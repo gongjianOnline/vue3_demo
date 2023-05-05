@@ -1,44 +1,43 @@
 <template>
-  <div>this is child {{ title }}</div>
-  <button @click="handelClick">handelClick</button>
+  <div ref="divContainer">this is Components</div>
 </template>
+
 <script setup lang="ts">
-  // defineProps({
-  //   title:{
-  //     type:String,
-  //     default:""
-  //   }
-  // })
+import {
+  ref,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted
+} from "vue";
 
-  // defineProps<{
-  //   title:string
-  // }>();
-  withDefaults(
-    defineProps<{
-      title:string
-    }>(),
-    {
-      title:"22222"
-    }
-);
+const divContainer = ref(null);
 
-  // const emit = defineEmits(["on-click"])
-  // const send = ()=>{emit("on-click","xxxxx")}
-  // const handelClick = ()=>  {
-  //   send();
-  // }
+onBeforeMount(()=>{
+  console.log("挂载前",divContainer.value);
+})
+onMounted(()=>{
+  console.log("挂载后",divContainer.value);
+})
+onBeforeUpdate(()=>{
+  console.log("数据更新前");
+})
+onUpdated(()=>{
+  console.log("数据更新后");
+})
+onBeforeUnmount(()=>{
+  console.log("销毁前")
+})
+onUnmounted(()=>{
+  console.log("组件被销毁")
+})
 
-  const emit = defineEmits<{
-    (e:'on-click',name:string):void
-  }>();
-  const send = ()=>{emit("on-click","456789")};
-  const  handelClick = ()=>{
-    send();
-  }
 
 
 </script>
 
-<style>
+<style scoped>
 
 </style>
