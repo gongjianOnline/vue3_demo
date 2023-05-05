@@ -1,23 +1,15 @@
 <template>
-  <div>this is hello World</div>
+  <div>
+    <h1>this is hello world</h1>
+    
+    <Teleport :disabled="false" to="body">
+      <h2>传送门到body</h2>
+    </Teleport>
+
+  </div>
+
 </template>
-
-<script setup lang="ts">
-
-var promise = ()=>{
-  return new Promise((resolve)=>{
-    setTimeout(()=>{
-      resolve({"data":"this is promiseData"})
-    },2000)
-  })
-}
-
-const response = await promise();
-console.log(response);
-
-
-
-
+<script setup lang="ts">  
 
 </script>
 <style scoped>
