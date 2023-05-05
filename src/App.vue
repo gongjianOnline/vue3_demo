@@ -1,26 +1,22 @@
 <template>
   <div>hello world</div>
-  <button @click="handelClick">+</button>
+  <HelloWorld @on-click="getName"></HelloWorld>
 
 </template>
 
 <script setup lang="ts">
-import {watch,reactive,watchEffect} from "Vue";
-const data = reactive({
-  num:0
-});
+import {
+  watch,
+  reactive,
+  watchEffect
+} from "Vue";
+import HelloWorld from "./components/HelloWorld.vue"
 
-// watch(()=>data.num,(newValue,oldValue)=>{
-//   console.log(newValue,oldValue);
-// })
-watchEffect(()=>{
-  console.log(data.num)
-})
-
-
-const  handelClick = ()=>{
-  data.num ++;
+const getName = (data:string)=>{
+  console.log(data);
+  
 }
+
 
 
 </script>

@@ -1,38 +1,44 @@
+<template>
+  <div>this is child {{ title }}</div>
+  <button @click="handelClick">handelClick</button>
+</template>
 <script setup lang="ts">
-import { ref } from 'vue'
+  // defineProps({
+  //   title:{
+  //     type:String,
+  //     default:""
+  //   }
+  // })
 
-defineProps<{ msg: string }>()
+  // defineProps<{
+  //   title:string
+  // }>();
+  withDefaults(
+    defineProps<{
+      title:string
+    }>(),
+    {
+      title:"22222"
+    }
+);
 
-const count = ref(0)
+  // const emit = defineEmits(["on-click"])
+  // const send = ()=>{emit("on-click","xxxxx")}
+  // const handelClick = ()=>  {
+  //   send();
+  // }
+
+  const emit = defineEmits<{
+    (e:'on-click',name:string):void
+  }>();
+  const send = ()=>{emit("on-click","456789")};
+  const  handelClick = ()=>{
+    send();
+  }
+
+
 </script>
 
-<template>
-  <h1>{{ msg }}</h1>
+<style>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-</template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
 </style>
