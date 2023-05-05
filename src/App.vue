@@ -1,51 +1,24 @@
 <template>
-  <div>hello world</div>
-  <GlobalComponent></GlobalComponent>
-  <HelloWorld :data="data"></HelloWorld>
-
+  <button @click="handelClick">checked</button>
+  <component :is="componentsName[index].componentName"></component>
 </template>
 
 <script setup lang="ts">
-import {reactive} from "vue"
-import HelloWorld from "./components/HelloWorld.vue"
-interface Data {
-  name:string,
-  id:string,
-  child?:Data[]
-}
+  import {reactive,ref} from "vue"
+  import HelloWorld from "./components/HelloWorld.vue"
+  import GlobalComponent from "./components/GlobalComponent.vue";
+  const index = ref(0);
+  const componentsName = reactive([
+    {"componentName":HelloWorld},
+    {"componentName":GlobalComponent}
+  ])
 
-const data = reactive<Data[]>([
-  {
-    name:"1",
-    id:"1",
-    child:[
-      {
-        name:"1-1",
-        id:"1-1"
-      },
-      {
-        name:"1-2",
-        id:"1-2"
-      },
-      {
-        name:"1-3",
-        id:"1-3"
-      },
-
-    ]
-  },
-  {
-    name:'2',
-    id:"2"
+  const handelClick = ()=>{
+    index.value++
   }
-])
-
-
-
-
-
+  
 
 </script>
-<style scoped>
 
-</style>
+
+
