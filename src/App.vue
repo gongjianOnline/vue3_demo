@@ -1,14 +1,22 @@
 <template>
   <div>this is app</div>
-  <HelloWorld></HelloWorld>
-  <TsxComponent title="泰裤辣" @on-click="getParams"> </TsxComponent>
+  <button @click="handelClick">状态</button>
+  <div>{{textValue}}</div>
+  <HelloWorld 
+    v-model:textValue="textValue"
+    v-model="isClose"></HelloWorld>
+
 </template>
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue"
-import TsxComponent from "./app"
-const getParams = (data:any)=>{
-  console.log("接收到了子组件的传参",data);
+import {ref} from "vue"
+import HelloWorld  from "./components/HelloWorld.vue"
+const isClose = ref(false)
+const textValue = ref("");
+const handelClick = ()=>{
+  isClose.value = !isClose.value
 }
+
+
 </script>
 <style scoped>
 
