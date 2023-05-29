@@ -1,23 +1,26 @@
 <template>
-  <h1>this is hello world</h1>
-  <h2>pinia {{store.name}} {{store.age}} {{store.asName}}</h2>
-  <button @click="handleClick">click</button>
+  <div>this is HelloWorld</div>
+  <button @click="show = !show">开关{{show}}</button>
+  <button @click="handleClick">count++</button>
+  <hr>
+  <ChildComponent v-model="show" v-model:count.add="count"></ChildComponent>
+
 </template>
+
 <script setup lang="ts">
-import {testStore} from "../store/index.ts";
-const store = testStore(); 
+import {ref} from "vue";
+import ChildComponent from "./childComponent.vue";
+const show = ref(false)
+const count = ref(0);
+
 const handleClick = ()=>{
-  // store.age++
-  // store.$patch({
-  //   age:20,
-  //   name:"lisi"
-  // })
-  // store.$state = {age:11,name:'111'}
-  store.setName()
+  count.value++
 }
 
-
 </script>
-<style>
+
+
+<style> 
+
 
 </style>
